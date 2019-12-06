@@ -49,16 +49,13 @@ celsius_fahr()
 	}
 }
 
-/* 1.5.1 File Copying 
- * copy input to output */
+/* 1.5.2 Characater Counting */
 int
 main()
 {
-	printf("EOF is %d\n", EOF);
-	int c;
-	while ((c = getchar()) != EOF) {
-		assert ((c != EOF) == (0 || 1));
-		putchar(c);
-	}
+	double nc;
+	for (nc = 0; getchar() != EOF; ++nc)
+		;
+	printf("%.0f\n", nc);
 	return 0;
 }
