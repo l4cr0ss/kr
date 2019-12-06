@@ -26,9 +26,31 @@ fahr_celsius()
 
 }
 
+/* print Celsius-Fahrenheit table
+ *  for celsius = 0, 20, ..., 300 */
+void
+celsius_fahr()
+{
+	float 	fahr,
+	      	celsius;
+	int	lower,
+		upper,
+		step;
+	lower = 0;
+	upper = 300;
+	step  = 20;
+	printf("celsius|fahr\n"); // print header line
+	celsius = lower;
+	while (celsius <= upper) {
+		fahr = (celsius/(5.0/9.0)) + 32;
+		printf("%3.0f %6.1f\n", celsius, fahr);
+		celsius = celsius + step;
+	}
+}
+
 int
 main()
 {
-	fahr_celsius();
+	celsius_fahr();
 	return 0;
 }
