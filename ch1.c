@@ -54,6 +54,7 @@ celsius_fahr()
 int
 main()
 {
+	printf("EOF is %d\n", EOF);
 	int c;
 	while ((c = getchar()) != EOF) {
 		assert ((c != EOF) == (0 || 1));
