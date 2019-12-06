@@ -49,13 +49,17 @@ celsius_fahr()
 	}
 }
 
-/* 1.5.2 Characater Counting */
+/* 1.5.3 Line Counting 
+ * count blanks/tabs/newlines
+ * */
 int
 main()
 {
-	double nc;
-	for (nc = 0; getchar() != EOF; ++nc)
-		;
-	printf("%.0f\n", nc);
-	return 0;
+	int c,
+	    nl;
+	nl = 0;
+	while ((c = getchar()) != EOF)
+		if (c == '\n' || c == '\t' || c == ' ')
+			++nl;
+	printf("%d\n", nl);
 }
