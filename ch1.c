@@ -28,7 +28,6 @@ fahr_celsius()
 int
 main()
 {
-	printf("hello, world!\n");
 	fahr_celsius();
 	return 0;
 }
