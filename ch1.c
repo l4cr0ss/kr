@@ -56,10 +56,16 @@ int
 main()
 {
 	int c,
-	    nl;
-	nl = 0;
-	while ((c = getchar()) != EOF)
-		if (c == '\n' || c == '\t' || c == ' ')
-			++nl;
-	printf("%d\n", nl);
+	    p,
+	    flag;
+	flag = 0;
+	while ((c = getchar()) != EOF) {
+		if ((c == ' ' || c == '\t') && c == p) 
+			flag = 1;
+		else
+			flag = 0;
+		if (!flag)
+			putchar(c);
+		p = c;
+	}
 }
