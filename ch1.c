@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <assert.h>
 
 /* print Fahrenheit-Celsius table
  *  for fahr = 0, 20, ..., 300 */
@@ -48,9 +49,15 @@ celsius_fahr()
 	}
 }
 
+/* 1.5.1 File Copying 
+ * copy input to output */
 int
 main()
 {
-	celsius_fahr();
+	int c;
+	while ((c = getchar()) != EOF) {
+		assert ((c != EOF) == (0 || 1));
+		putchar(c);
+	}
 	return 0;
 }
