@@ -49,23 +49,32 @@ celsius_fahr()
 	}
 }
 
-/* 1.5.3 Line Counting 
- * count blanks/tabs/newlines
+#define IN  1	/* inside a word */
+#define OUT 0	/* outside a word */
+
+/* 1.5.4 Word Counting
+ * poor man's wc
  * */
 int
 main()
 {
 	int c,
-	    p,
-	    flag;
-	flag = 0;
+	    nl,
+	    nw,
+	    nc,
+	    state;
+	state = OUT;
+	nl = nw = nc = 0;
 	while ((c = getchar()) != EOF) {
-		if ((c == ' ' || c == '\t') && c == p) 
-			flag = 1;
-		else
-			flag = 0;
-		if (!flag)
-			putchar(c);
-		p = c;
+		++nc;
+		if (c == '\n')
+			++nl;
+		if (c == ' ' || c == '\n' || c == '\t')
+			state = OUT;
+		else if (state == OUT) { 
+			state = IN;
+			++nw;
+		}
+		printf("%d %d %d\n", nl, nw, nc);
 	}
 }
