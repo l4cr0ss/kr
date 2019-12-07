@@ -52,9 +52,38 @@ celsius_fahr()
 #define IN  1	/* inside a word */
 #define OUT 0	/* outside a word */
 
-/* 1.5.4 Word Counting
- * poor man's wc
+/* 1.5.4 Word Counting poor man's wc
+ *
+ * ex 1-11: How would you test this program? What kinds of input are
+ * most likely to uncover bugs if there are any?
+ *
+ * 	The intended purpose of the program is to count characters and
+ * 	words. The ability of the program to accomplish this behavior
+ * 	depends on at least one assumption: that the EOF is in fact the
+ * 	final character of the string of characters being counted. 
+ *	
+ * 	If input here is taken to be restricted to the ASCII codes only,
+ * 	then I believe providing non-printable codes (i.e. tty control
+ * 	codes, extended ASCII codes, etc.) as input to the program will
+ * 	be most likely to uncover bugs, should they exist.
+ *
+ *	If we expand our definition of input to include supersets of the
+ *	ASCII encoding, like the Unicode standard, then I think the
+ *	likelihood of discovering bugs increases significantly.
+ *
+ *	Given that the first edition of this book was released in 1978,
+ *	I think that K&R intended this exercise to provoke discussion
+ *	about the 7-bit nature of the ASCII encoding. 
+ *
+ *	Regardless, I think sending bit-strings of arbitrary shape and
+ *	size as input is the best way to find hidden bugs in a program
+ *	like this, and today (Dec 2019) I would use a fuzzing† tool like
+ *	AFL to exercise the program.
+ *
+ * 	†AFL (american fuzzy lop) - http://lcamtuf.coredump.cx/afl/
+ *
  * */
+
 int
 main()
 {
