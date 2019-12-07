@@ -101,9 +101,11 @@ main()
 		if (c == ' ' || c == '\n' || c == '\t')
 			state = OUT;
 		else if (state == OUT) { 
+			if (nc != 1) 		/* exercise 1-12 */
+				printf("\n"); 	/* exercise 1-12 */
 			state = IN;
 			++nw;
 		}
-		printf("%d %d %d\n", nl, nw, nc);
+		printf("%c",c); /* exercise 1-12 */
 	}
 }
