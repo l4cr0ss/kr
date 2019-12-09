@@ -1,16 +1,19 @@
 #include <stdio.h>
 
-/* count digits, white space, others */
+/* 1.6 Arrays
+ *
+ * Count the # of occurrences of each digit, of white space characters,
+ * and of all other characters. 
+ *
+ * */
 
 int
 main()
 {
 	int c, i, nwhite, nother;
-	int ndigit[10];
+	int ndigit[10] = {0};
 
 	nwhite = nother = 0;
-	for (i = 0; i < 10; ++i)
-		ndigit[i] = 0;
 
 	while ((c = getchar()) != EOF) 
 		if (c >= '0' && c <= '9')
