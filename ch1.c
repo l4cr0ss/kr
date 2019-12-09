@@ -4,7 +4,10 @@
 int
 main()
 {
-	int c, i, nwhite, nother;
+	int c, 
+		i, 
+		nwhite, 
+		nother;
 	int ndigit[10];
 
 	nwhite = nother = 0;
