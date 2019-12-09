@@ -1,30 +1,61 @@
 #include <stdio.h>
+#include <assert.h>
 
-/* count digits, white space, others */
+#define IN  1	/* inside a word */
+#define OUT 0	/* outside a word */
+
+#define WLMAX 32 /* max word size */
+#define WLMOD  1 /* histogram modulus */
+
+/* 1.6 Arrays
+ *
+ * 	ex 1-13
+ * */
 int
 main()
 {
-	int c, 
-		i, 
-		nwhite, 
-		nother;
-	int ndigit[10];
+	/* Declarations */
+	int c,
+		i,			// iterator i
+		j,			// iterator j
+	    nl,			// num letters
+	    nw,			// num words
+	    nc,			// num characters
+		wl,			// word length
+	    state;		// in or out of word
+	int wlens[32];	// histogram
 
-	nwhite = nother = 0;
-	for (i = 0; i < 10; ++i)
-		ndigit[i] = 0;
+	/* Initializations */
+	for (i = 0; i < WLMAX; i++)
+		wlens[i] = 0;
+	state = OUT;
+	nl = nw = nc = wl = 0;
 
-	while ((c = getchar()) != EOF)
-		if (c >= '0' && c <= '9')
-			++ndigit[c-'0'];
-		else if (c == ' ' || c == '\n' || c == '\t')
-			++nwhite;
-		else
-			++nother;
+	/* Calculations */
+	while ((c = getchar()) != EOF) {
+		++nc;
+		if (c == '\n')
+			++nl;
+		if (c == ' ' || c == '\n' || c == '\t') {
+			state = OUT;
+		} else if (state == OUT) {
+			if (wl != 0 && wl < WLMAX)
+				++wlens[wl];
+			wl = 0;
+			state = IN;
+			++nw;
+		} else {
+			++wl;
+		}
+	}
 
-		printf("digits =");
-		for (i = 0; i < 10; ++i)
-			printf(" %d", ndigit[i]);
-		printf(", white space = %d, other = %d\n",
-			nwhite, nother);
+	for (i = 0; i < WLMAX; i++) {
+		if (wlens[i] > 0) {
+			printf("[%2d] (%d) ", i, wlens[i]);
+			for (j = 0; j < wlens[i]; j++) 
+				if (j % WLMOD == 0 )
+					printf("*");
+			printf("\n");
+		}
+	}
 }
