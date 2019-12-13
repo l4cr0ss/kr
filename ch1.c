@@ -7,40 +7,36 @@
 #define WLMAX 255 /* max word size */
 #define WLMOD  1 /* histogram modulus */
 
-/* 1.6 Arrays
+/* 1.7 Functions
  *
- * 	ex 1-14
+ * A function provides a convenient way to encapsulate some computation,
+ * which can then be used without worrying about its implementation.
  * */
+
+int power (int m, int n);
+
+/* test power function */
 int
 main()
 {
-	/* Declarations */
-	int c,
-		i,			// iterator i
-		j,			// iterator j
-	    nc;			// num characters
-	int wl[WLMAX];	// histogram
+	int i;
 
-	/* Initializations */
-	nc = 0;
-	for (i = 0; i < WLMAX; i++)
-		wl[i] = 0;
+	for (i = 0; i < 10; ++i)
+		printf("%d %d %d\n", i, power(2,i), power(-3,i));
+	return 0;
+}
 
-	/* Calculations */
-	while ((c = getchar()) != EOF) {
-		++nc;
-		++wl[c];
-	}
+/* power: raise base to n-th power; n >= 0 */
+int
+power (int base, int n)
+{
+	int i,
+		p;
 
-	for (i = 0; i < WLMAX; i++) {
-		if (wl[i] > 0) {
-			printf("[%3d] (%3d) ", i, wl[i]);
-			for (j = 0; j < wl[i]; j++) 
-				if (j % WLMOD == 0 )
-					printf("*");
-			printf("\n");
-		}
-	}
+	p = 1;
+	for (i = 1; i <= n; ++i)
+		p = p * base;
+	return p;
 }
 
 // vim:ts=4 sw=4
